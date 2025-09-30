@@ -8,6 +8,6 @@ export class Api {
   constructor(private httpClient: HttpClient) {}
 
   getProducts() {
-    return this.httpClient.get('assets/products.json');
+    return this.httpClient.get('http://localhost:8080/api/products/get');
   }
 }

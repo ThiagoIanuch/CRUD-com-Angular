@@ -2,6 +2,9 @@ const express = require('express');
 
 const app = express();
 
+const cors = require('cors');
+app.use(cors());
+
 const productsRoutes = require('./routes/products.routes.js');
 app.use('/api/products/', productsRoutes);
 
