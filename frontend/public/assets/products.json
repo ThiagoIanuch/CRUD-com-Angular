@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Camiseta",
+    "description": "Camiseta de algodão, tamanho M",
+    "quantity": 20,
+    "price": 49.90
+  },
+  {
+    "id": 2,
+    "name": "Fones de Ouvido",
+    "description": "Fones Bluetooth com cancelamento de ruído",
+    "quantity": 15,
+    "price": 199.90
+  },
+  {
+    "id": 3,
+    "name": "Mochila",
+    "description": "Mochila resistente para notebook até 15 polegadas",
+    "quantity": 10,
+    "price": 129.90
+  },
+  {
+    "id": 4,
+    "name": "Caneca",
+    "description": "Caneca de cerâmica 300ml, estampada",
+    "quantity": 50,
+    "price": 25.00
+  },
+  {
+    "id": 5,
+    "name": "Relógio de Pulso",
+    "description": "Relógio analógico à prova d'água",
+    "quantity": 8,
+    "price": 349.90
+  }
+]
