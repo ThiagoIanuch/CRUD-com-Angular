@@ -8,11 +8,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th>1</th>
-            <th>Produto 1</th>
-            <th>50</th>
-            <th>10</th>
+        <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name}}</td>
+            <td>{{ product.price}}</td>
+            <td>{{ product.value}}</td>
         </tr>
     </tbody>
 </table>
