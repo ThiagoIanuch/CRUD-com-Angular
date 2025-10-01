@@ -13,7 +13,7 @@ import { Product } from '../../interfaces/product';
 export class Products {
   constructor(private api: Api) {}
 
-  products: any[] = [];
+  products: Product[] = [];
   selectedProduct: any;
   showModal: boolean = false;
 
