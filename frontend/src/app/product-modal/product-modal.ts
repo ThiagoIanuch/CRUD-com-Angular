@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Product } from '../interfaces/product';
 
 @Component({
   selector: 'app-product-modal',
@@ -8,8 +9,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-modal.css'
 })
 export class ProductModal {
-  @Input() product: any = { name: '', description: '', quantity: 0, price: 0 };
-  @Output() save = new EventEmitter<any>();
+  @Input() product: Product = { name: '', description: '', quantity: 0, price: 0 };
+  @Output() save = new EventEmitter<Product>();
 
   onSubmit() {
     this.save.emit(this.product);

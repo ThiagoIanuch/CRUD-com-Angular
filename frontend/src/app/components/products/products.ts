@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Api } from '../../services/api';
 import { CommonModule } from '@angular/common';
 import { ProductModal } from '../../product-modal/product-modal';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +19,9 @@ export class Products {
 
   // Obter todos os produtos
   getProducts() {
-    this.api.getProducts().subscribe(data => {
-      this.products = data as any[];
-    })
+    this.api.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
   }
 
   // Deletar produto específico
@@ -29,22 +30,21 @@ export class Products {
   }
 
   // Controlar a visualização do painel modal
-  openModal(product?: any) {
+  openModal(product?: Product) {
     this.selectedProduct = { ...product};
     this.showModal = true;
   }
 
   // Verificar se o modal é para adicionar ou editar produto e então fazer a requisição para a API
-  submitModal(product?: any) {
-    if(product.id) {
+  submitModal(product: Product) {
+    if (product.id) {
       this.api.updateProduct(product).subscribe(() => {
         this.getProducts();
         this.showModal = false;
-      })
-    }
-    else {
+      });
+    } else {
       this.api.addProduct(product).subscribe(() => {
-        this.getProducts() 
+        this.getProducts();
         this.showModal = false;
       });
     }

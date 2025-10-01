@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Product } from '../interfaces/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,19 +9,19 @@ import { Injectable } from '@angular/core';
 export class Api {
   constructor(private httpClient: HttpClient) {}
 
-  addProduct(product: any) {
-    return this.httpClient.post('http://localhost:8080/api/products/add', product);
+  addProduct(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>('http://localhost:8080/api/products/add', product);
   }
 
-  getProducts() {
-    return this.httpClient.get('http://localhost:8080/api/products/get');
+  getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>('http://localhost:8080/api/products/get');
   }
 
-  updateProduct(product: any) {
-    return this.httpClient.put(`http://localhost:8080/api/products/update/${product.id}`, product);
+  updateProduct(product: Product): Observable<Product> {
+    return this.httpClient.put<Product>(`http://localhost:8080/api/products/update/${product.id}`, product);
   }
 
-  deleteProduct(id: number) {
-    return this.httpClient.delete(`http://localhost:8080/api/products/delete/${id}`);
+  deleteProduct(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`http://localhost:8080/api/products/delete/${id}`);
   }
 }
