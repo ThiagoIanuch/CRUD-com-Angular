@@ -10,4 +10,8 @@ export class Api {
   getProducts() {
     return this.httpClient.get('http://localhost:8080/api/products/get');
   }
+
+  deleteProduct(id: number) {
+    return this.httpClient.delete(`http://localhost:8080/api/products/delete/${id}`);
+  }
 }

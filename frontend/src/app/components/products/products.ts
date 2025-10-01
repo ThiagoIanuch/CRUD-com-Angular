@@ -13,9 +13,20 @@ export class Products {
 
   products: any[] = [];
 
-  ngOnInit() {
+  getProducts() {
     this.api.getProducts().subscribe(data => {
       this.products = data as any[];
     })
+  }
+
+  deleteProduct(id: number) {
+    this.api.deleteProduct(id).subscribe(() => this.getProducts());
+  }
+
+  ngOnInit() {
+    //this.api.getProducts().subscribe(data => {
+      //this.products = data as any[];
+    //})
+    this.getProducts();
   }
 }
