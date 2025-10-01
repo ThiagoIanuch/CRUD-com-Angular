@@ -26,7 +26,10 @@ export class Products {
 
   // Deletar produto específico
   deleteProduct(id: number) {
-    this.api.deleteProduct(id).subscribe(() => this.getProducts());
+    this.api.deleteProduct(id).subscribe(() => {
+      this.getProducts()
+      alert("Produto deletado com sucesso");
+    });
   }
 
   // Controlar a visualização do painel modal
@@ -41,11 +44,13 @@ export class Products {
       this.api.updateProduct(product).subscribe(() => {
         this.getProducts();
         this.showModal = false;
+        alert("Produto editado com sucesso");
       });
     } else {
       this.api.addProduct(product).subscribe(() => {
         this.getProducts();
         this.showModal = false;
+        alert("Produto adicionado com sucesso");
       });
     }
   }
