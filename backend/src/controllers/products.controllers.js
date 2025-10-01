@@ -1,5 +1,20 @@
 const db = require('../database.js')
 
+exports.add = async(req, res) => {
+    const SQL = "INSERT INTO product (name, description, quantity, price) VALUES (?, ?, ?, ?)";
+
+    const {name, description, quantity, price} = req.body;
+
+    try {
+        await db.query(SQL, [name, description, quantity, price]);
+
+        return res.status(200).json({msg: 'Produto adicionado com sucesso'}); 
+    }
+    catch {
+        return res.status(400).json({msg: 'Não foi possível adicionar o produto no banco de dados'});
+    }
+}
+
 exports.get = async(req, res) => {
     const SQL = 'SELECT * FROM product ORDER BY id';
 
@@ -10,6 +25,22 @@ exports.get = async(req, res) => {
     }
     catch {
         return res.status(400).json({msg: 'Não foi possível obter os produtos do banco de dados'});
+    }
+}
+
+exports.update = async(req, res) => {
+    const SQL = "UPDATE product SET name = ?, description = ?, quantity = ?, price = ? WHERE id = ?";
+
+    const id = req.params.id;
+    const {name, description, quantity, price} = req.body;
+
+    try {
+        await db.query(SQL, [name, description, quantity, price, id]);
+
+        return res.status(200).json({msg: 'Produto editado com sucesso'}); 
+    }
+    catch {
+        return res.status(400).json({msg: 'Não foi possível editar o produto no banco de dados'});
     }
 }
 
