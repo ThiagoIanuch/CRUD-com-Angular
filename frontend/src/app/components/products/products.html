@@ -1,26 +1,30 @@
-<button (click)="openModal()">Adicionar</button>
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Quantidade</th>
-            <th>Preço</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-            <td>{{ product.id }}</td>
-            <td>{{ product.name}}</td>
-            <td>{{ product.description}}</td>
-            <td>{{ product.quantity}}</td>
-            <td>{{ product.price}}</td>
-            <td>
-                <button (click)="openModal(product)">Editar</button>
-                <button (click)="deleteProduct(product.id)">Deletar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="products-container">
+    <div class="add-btn-container">
+        <button (click)="openModal()" class="add-btn">Adicionar</button>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-header">
+            <div>ID</div>
+            <div>Nome</div>
+            <div>Descrição</div>
+            <div>Quantidade</div>
+            <div>Preço</div>
+            <div>Ações</div>
+        </div>
+
+        <div class="grid-body" *ngFor="let product of products">
+            <div>{{ product.id }}</div>
+            <div>{{ product.name }}</div>
+            <div>{{ product.description }}</div>
+            <div>{{ product.quantity }}</div>
+            <div>{{ product.price }}</div>
+            <div class="actions">
+                <button (click)="openModal(product)" class="edit-btn">Editar</button>
+                <button (click)="deleteProduct(product.id)" class="delete-btn">Deletar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <app-product-modal *ngIf="showModal" [product]="selectedProduct" (save)="submitModal($event)"></app-product-modal>

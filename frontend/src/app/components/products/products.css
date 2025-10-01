@@ -1,0 +1,58 @@
+.products-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.add-btn-container {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.add-btn {
+    width: 120px;
+    height: 30px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.grid-container {
+    width: 100%;
+    display: grid;
+}
+
+.grid-header, .grid-body {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #3d566e;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+    flex: 1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
