@@ -29,9 +29,10 @@
 
 .grid-header, .grid-body {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 50px repeat(5, 1fr);
     align-items: center;
-    padding: 5px 10px;
+    text-align: center;
+    padding: 5px 5px;
     border: 1px solid #3d566e;
 }
 
