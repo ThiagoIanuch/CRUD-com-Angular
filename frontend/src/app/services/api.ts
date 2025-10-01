@@ -9,19 +9,21 @@ import { Observable } from 'rxjs';
 export class Api {
   constructor(private httpClient: HttpClient) {}
 
+  private apiUrl = 'http://localhost:8080/api/products';
+
   addProduct(product: Product): Observable<Product> {
-    return this.httpClient.post<Product>('http://localhost:8080/api/products/add', product);
+    return this.httpClient.post<Product>(`${this.apiUrl}/add`, product);
   }
 
   getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>('http://localhost:8080/api/products/get');
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/get`);
   }
 
   updateProduct(product: Product): Observable<Product> {
-    return this.httpClient.put<Product>(`http://localhost:8080/api/products/update/${product.id}`, product);
+    return this.httpClient.put<Product>(`${this.apiUrl}/update/${product.id}`, product);
   }
 
   deleteProduct(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`http://localhost:8080/api/products/delete/${id}`);
+    return this.httpClient.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 }
