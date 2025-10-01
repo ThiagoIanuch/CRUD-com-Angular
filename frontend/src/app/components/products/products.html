@@ -1,3 +1,4 @@
+<button (click)="openModal()">Adicionar</button>
 <table>
     <thead>
         <tr>
@@ -15,8 +16,11 @@
             <td>{{ product.quantity}}</td>
             <td>{{ product.price}}</td>
             <td>
+                <button (click)="openModal(product)">Editar</button>
                 <button (click)="deleteProduct(product.id)">Deletar</button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<app-product-modal *ngIf="showModal" [product]="selectedProduct" (save)="submitModal($event)"></app-product-modal>
