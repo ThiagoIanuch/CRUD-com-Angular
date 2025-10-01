@@ -16,7 +16,7 @@ export class Products {
   selectedProduct: any;
   showModal: boolean = false;
 
-  // Obter todos os produtos e listar eles
+  // Obter todos os produtos
   getProducts() {
     this.api.getProducts().subscribe(data => {
       this.products = data as any[];
@@ -28,7 +28,7 @@ export class Products {
     this.api.deleteProduct(id).subscribe(() => this.getProducts());
   }
 
-  // Controlar o painel model para editar e adicionar produto
+  // Controlar a visualização do painel modal
   openModal(product?: any) {
     this.selectedProduct = { ...product};
     this.showModal = true;
@@ -37,13 +37,20 @@ export class Products {
   // Verificar se o modal é para adicionar ou editar produto e então fazer a requisição para a API
   submitModal(product?: any) {
     if(product.id) {
-
+      this.api.updateProduct(product).subscribe(() => {
+        this.getProducts();
+        this.showModal = false;
+      })
     }
     else {
-      this.api.addProduct(product).subscribe();
+      this.api.addProduct(product).subscribe(() => {
+        this.getProducts() 
+        this.showModal = false;
+      });
     }
   }
 
+  // Listar todos os produtos ao carregar a página
   ngOnInit() {
     this.getProducts();
   }
