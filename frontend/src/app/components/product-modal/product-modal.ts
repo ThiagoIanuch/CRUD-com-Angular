@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Product } from '../interfaces/product';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-modal',

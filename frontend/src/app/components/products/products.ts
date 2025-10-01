@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Api } from '../../services/api';
 import { CommonModule } from '@angular/common';
-import { ProductModal } from '../../product-modal/product-modal';
+import { ProductModal } from '../product-modal/product-modal';
 import { Product } from '../../interfaces/product';
 
 @Component({
