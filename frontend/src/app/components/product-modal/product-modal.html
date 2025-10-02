@@ -1,21 +1,20 @@
 <div class="modal-container">
-  <form (ngSubmit)="onSubmit()" class="modal-form">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="modal-form">
     
     <label for="name">Nome do produto</label>
-    <input placeholder="Nome" [(ngModel)]="product.name" name="name">
+    <input type="text" formControlName="name" placeholder="Nome" name="name">
 
     <label for="description">Descrição</label>
-    <input placeholder="Descrição" type="text" [(ngModel)]="product.description" name="description">
+    <input type="text" formControlName="description" placeholder="Descrição" name="description">
 
     <label for="quantity">Quantidade</label>
-    <input placeholder="Quantidade" type="number" [(ngModel)]="product.quantity" name="quantity">
+    <input type="number" formControlName="quantity" placeholder="Quantidade" name="quantity">
 
     <label for="price">Preço</label>
-    <input placeholder="Preço" type="number" [(ngModel)]="product.price" name="price">
+    <input type="number" formControlName="price" placeholder="Preço" name="price">
 
     <div class="btn-container">
       <input type="submit" value="Enviar" class="btn-submit">
     </div>
-
   </form>
 </div>
