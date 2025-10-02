@@ -3,17 +3,30 @@
     
     <label for="name">Nome do produto</label>
     <input type="text" formControlName="name" placeholder="Nome" name="name">
+    <div class="error-msg-container">
+      <span *ngIf="productForm.get('name')?.touched && productForm.get('name')?.hasError('required')" class="error-msg">* O nome é obrigatório</span>    
+    </div>
 
     <label for="description">Descrição</label>
     <input type="text" formControlName="description" placeholder="Descrição" name="description">
+    <div class="error-msg-container">
+      <span *ngIf="productForm.get('description')?.touched && productForm.get('description')?.hasError('required')" class="error-msg">* A descrição é obrigatória</span>    
+    </div>
 
     <label for="quantity">Quantidade</label>
     <input type="number" formControlName="quantity" placeholder="Quantidade" name="quantity">
+    <div class="error-msg-container">
+      <span *ngIf="productForm.get('quantity')?.touched && productForm.get('quantity')?.hasError('required')" class="error-msg">* A quantidade é obrigatória</span> 
+    </div>
 
     <label for="price">Preço</label>
     <input type="number" formControlName="price" placeholder="Preço" name="price">
+    <div class="error-msg-container">
+      <span *ngIf="productForm.get('price')?.touched && productForm.get('price')?.hasError('required')" class="error-msg">* O preço é obrigatório</span>    
+    </div>
 
     <div class="btn-container">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
       <input type="submit" value="Enviar" class="btn-submit">
     </div>
   </form>

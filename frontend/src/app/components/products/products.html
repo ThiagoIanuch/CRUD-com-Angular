@@ -27,4 +27,4 @@
     </div>
 </div>
 
-<app-product-modal *ngIf="showModal" [product]="selectedProduct" (save)="submitModal($event)"></app-product-modal>
+<app-product-modal *ngIf="showModal" [product]="selectedProduct" (save)="submitModal($event)" (cancel)="showModal=false"></app-product-modal>

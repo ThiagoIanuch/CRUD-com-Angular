@@ -27,7 +27,7 @@ export class Products {
   // Deletar produto específico
   deleteProduct(id: number) {
     this.api.deleteProduct(id).subscribe(() => {
-      this.getProducts()
+      this.getProducts()  
       alert("Produto deletado com sucesso");
     });
   }
