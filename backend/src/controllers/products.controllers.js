@@ -16,7 +16,20 @@ exports.add = async(req, res) => {
 }
 
 exports.get = async(req, res) => {
-    const SQL = 'SELECT * FROM product ORDER BY id';
+    const SQL = `
+    SELECT 
+        p.id, 
+        p.name, 
+        p.description, 
+        p.quantity, 
+        p.price,
+        GROUP_CONCAT(c.name SEPARATOR ', ') AS categories
+    FROM product AS p
+    LEFT JOIN product_category AS pc ON p.id = pc.product_id
+    LEFT JOIN category AS c ON pc.category_id = c.id
+    GROUP BY p.id, p.name, p.description, p.quantity, p.price
+    ORDER BY p.id;
+    `;
 
     try {
         const [result] = await db.query(SQL);
