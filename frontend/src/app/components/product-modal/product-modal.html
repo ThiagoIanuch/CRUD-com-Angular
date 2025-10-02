@@ -2,25 +2,34 @@
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="modal-form">
     
     <label for="name">Nome do produto</label>
-    <input type="text" formControlName="name" placeholder="Nome" name="name">
+    <input type="text" formControlName="name" placeholder="Nome" id="name">
     <div class="error-msg-container">
       <span *ngIf="productForm.get('name')?.touched && productForm.get('name')?.hasError('required')" class="error-msg">* O nome é obrigatório</span>    
     </div>
 
     <label for="description">Descrição</label>
-    <input type="text" formControlName="description" placeholder="Descrição" name="description">
+    <input type="text" formControlName="description" placeholder="Descrição" id="description">
     <div class="error-msg-container">
       <span *ngIf="productForm.get('description')?.touched && productForm.get('description')?.hasError('required')" class="error-msg">* A descrição é obrigatória</span>    
     </div>
 
+    <label for="categories">Categorias</label>
+    <div *ngFor="let category of categories" class="checkbox-container">
+      <input type="checkbox" [value]="category.id" id="categories">
+      {{ category.name }}
+    </div>
+    <div class="error-msg-container">
+      <span></span>
+    </div>
+
     <label for="quantity">Quantidade</label>
-    <input type="number" formControlName="quantity" placeholder="Quantidade" name="quantity">
+    <input type="number" formControlName="quantity" placeholder="Quantidade" id="quantity">
     <div class="error-msg-container">
       <span *ngIf="productForm.get('quantity')?.touched && productForm.get('quantity')?.hasError('required')" class="error-msg">* A quantidade é obrigatória</span> 
     </div>
 
     <label for="price">Preço</label>
-    <input type="number" formControlName="price" placeholder="Preço" name="price">
+    <input type="number" formControlName="price" placeholder="Preço" id="price">
     <div class="error-msg-container">
       <span *ngIf="productForm.get('price')?.touched && productForm.get('price')?.hasError('required')" class="error-msg">* O preço é obrigatório</span>    
     </div>
