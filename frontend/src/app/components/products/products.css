@@ -29,7 +29,7 @@
 
 .grid-header, .grid-body {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 50px 1fr 2fr 1fr 1fr 1fr 1fr;
     align-items: center;
     padding: 5px 5px;
     border-left: 2px solid #3d566e;
