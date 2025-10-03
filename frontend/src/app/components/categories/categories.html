@@ -1,0 +1,28 @@
+<div class="page-container">
+    <h3>Categorias</h3>
+
+    <div class="btn-add-container">
+        <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="form-add">
+            <input type="text" placeholder="Digite o nome da categoria" formControlName="name">
+            <button class="btn-add">Adicionar</button>
+        </form>
+    </div>
+    <div class="grid-container">
+
+        <div class="grid-header">
+            <div>ID</div>
+            <div>Nome</div>
+            <div class="actions-header">Ações</div>
+        </div>
+
+        @for(category of categories; track categories) {
+            <div class="grid-body">
+                <div>{{ category.id }}</div>
+                <div>{{ category.name }}</div>
+                <div class="actions">
+                    <button (click)="deleteCategory(category.id!)" class="btn-delete">Deletar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

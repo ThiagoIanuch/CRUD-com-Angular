@@ -28,7 +28,15 @@ export class Api {
     return this.httpClient.delete<void>(`${this.apiUrl}/products/delete/${id}`);
   }
 
+  addCategory(category: Category): Observable<Category> {
+    return this.httpClient.post<Product>(`${this.apiUrl}/categories/add`, category);
+  }
+
   getCategories() : Observable<Category[]> {
     return this.httpClient.get<Category[]>(`${this.apiUrl}/categories/get`);
+  }
+
+  deleteCategory(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/categories/delete/${id}`);
   }
 }
