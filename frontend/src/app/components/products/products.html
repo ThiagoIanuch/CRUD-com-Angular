@@ -1,4 +1,6 @@
-<div class="products-container">
+<div class="page-container">
+    <h3>Produtos</h3>
+
     <div class="btn-add-container">
         <button (click)="openModal()" class="btn-add">Adicionar</button>
     </div>
@@ -14,26 +16,30 @@
             <div class="actions-header">Ações</div>
         </div>
 
-        <div class="grid-body" *ngFor="let product of products">
-            <div>{{ product.id }}</div>
-            <div>{{ product.name }}</div>
-            <div>{{ product.description }}</div>
-            <div>
-                @for(productCategory of product.categories; track productCategory.name; let last = $last) {
-                    <span>{{productCategory.name}}</span>
-                    @if(!last) {
-                        <span>, </span>
+        @for(product of products; track products) {
+            <div class="grid-body">
+                <div>{{ product.id }}</div>
+                <div>{{ product.name }}</div>
+                <div>{{ product.description }}</div>
+                <div>
+                    @for(productCategory of product.categories; track productCategory.name; let last = $last) {
+                        <span>{{productCategory.name}}</span>
+                        @if(!last) {
+                            <span>, </span>
+                        }
                     }
-                }
+                </div>
+                <div>{{ product.quantity }}</div>
+                <div>R$ {{ product.price }}</div>
+                <div class="actions">
+                    <button (click)="openModal(product)" class="btn-edit">Editar</button>
+                    <button (click)="deleteProduct(product.id!)" class="btn-delete">Deletar</button>
+                </div>
             </div>
-            <div>{{ product.quantity }}</div>
-            <div>R$ {{ product.price }}</div>
-            <div class="actions">
-                <button (click)="openModal(product)" class="btn-edit">Editar</button>
-                <button (click)="deleteProduct(product.id!)" class="btn-delete">Deletar</button>
-            </div>
-        </div>
+        }
     </div>
 </div>
 
-<app-product-modal *ngIf="showModal" [product]="selectedProduct" (save)="submitModal($event)" (cancel)="showModal=false"></app-product-modal>
+@if (showModal) {
+  <app-product-modal [product]="selectedProduct" (save)="submitModal($event)" (cancel)="showModal=false"></app-product-modal>
+}
