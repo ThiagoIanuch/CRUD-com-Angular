@@ -8,7 +8,7 @@ exports.get = async(req, res) => {
 
         return res.status(200).json(result);
     }
-    catch {
+    catch (error) {
         return res.status(400).json({msg: 'Não foi possível obter as categorias do banco de dados'});
     }
 }
