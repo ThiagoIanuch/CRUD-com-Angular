@@ -1,6 +1,6 @@
 <div class="products-container">
-    <div class="add-btn-container">
-        <button (click)="openModal()" class="add-btn">Adicionar</button>
+    <div class="btn-add-container">
+        <button (click)="openModal()" class="btn-add">Adicionar</button>
     </div>
 
     <div class="grid-container">
@@ -18,12 +18,19 @@
             <div>{{ product.id }}</div>
             <div>{{ product.name }}</div>
             <div>{{ product.description }}</div>
-            <div>{{ product.categories }}</div>
+            <div>
+                @for(productCategory of product.categories; track productCategory.name; let last = $last) {
+                    <span>{{productCategory.name}}</span>
+                    @if(!last) {
+                        <span>, </span>
+                    }
+                }
+            </div>
             <div>{{ product.quantity }}</div>
             <div>R$ {{ product.price }}</div>
             <div class="actions">
-                <button (click)="openModal(product)" class="edit-btn">Editar</button>
-                <button (click)="deleteProduct(product.id!)" class="delete-btn">Deletar</button>
+                <button (click)="openModal(product)" class="btn-edit">Editar</button>
+                <button (click)="deleteProduct(product.id!)" class="btn-delete">Deletar</button>
             </div>
         </div>
     </div>
