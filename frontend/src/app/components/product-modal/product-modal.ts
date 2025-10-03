@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../../interfaces/product';
 import { CommonModule } from '@angular/common';
 import { Category } from '../../interfaces/category';
@@ -17,29 +17,52 @@ export class ProductModal {
   @Input() product: Product | null = null;
   @Output() save = new EventEmitter<Product>();
   @Output() cancel = new EventEmitter<void>();
-
-  categories: Category[] = [];
-
-  getCategories() {
-    this.api.getCategories().subscribe((data: Category[]) => {
-      this.categories = data;
-    });
-  }
-
+  
   productForm: FormGroup = new FormGroup({
     id: new FormControl(null),
     name: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     quantity: new FormControl(null, Validators.required),
-    price: new FormControl(null, Validators.required)
+    price: new FormControl(null, Validators.required),
+    categories: new FormArray([])
   });
 
-  ngOnInit() {
-    this.getCategories();
+  categories: Category[] = [];
+  
+  // Utilizado para carregar as categorias que já existem na tabela categories e verificar quais categorias do produto estão em category_product
+  loadCategories() {
+    const categoriesFormArray = this.productForm.get('categories') as FormArray;
 
-    if (this.product) {
-      this.productForm.patchValue(this.product);
+    this.api.getCategories().subscribe((data: Category[]) => {
+      this.categories = data;
+
+      if(this.product) {
+        this.categories.forEach(category => {
+          const isSelected = this.product?.categories?.some(productCategory => productCategory.id === category.id) || false;
+  
+          categoriesFormArray.push(new FormControl(isSelected));
+        })
+      }
+    });
+  }
+
+  // Carrega os valores do produto e dps as categorias
+  loadProduct() {
+    if(this.product) {
+      this.productForm.patchValue({
+          id: this.product.id,
+          name: this.product.name,
+          description: this.product.description,
+          quantity: this.product.quantity,
+          price: this.product.price
+      });
     }
+
+    this.loadCategories();
+  }
+
+  onCancel() {
+    this.cancel.emit();
   }
 
   onSubmit() {
@@ -51,7 +74,7 @@ export class ProductModal {
     }
   }
 
-  onCancel() {
-    this.cancel.emit();
+  ngOnInit() {
+    this.loadProduct();
   }
 }
