@@ -6,13 +6,13 @@
     box-sizing: border-box;
 }
 
-.add-btn-container {
+.btn-add-container {
     width: 100%;
     text-align: right;
     margin-bottom: 10px;
 }
 
-.add-btn {
+.btn-add {
     width: 120px;
     height: 30px;
     color: white;
@@ -29,7 +29,7 @@
 
 .grid-header, .grid-body {
     display: grid;
-    grid-template-columns: 50px 1fr 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 50px 1fr 2fr 3fr 1fr 1fr 1fr;
     align-items: center;
     padding: 5px 5px;
     border-left: 2px solid #3d566e;
@@ -55,7 +55,7 @@
     gap: 10px;
 }
 
-.edit-btn, .delete-btn {
+.btn-edit, .btn-delete {
     flex: 1;
     color: white;
     border: none;
@@ -64,10 +64,10 @@
     cursor: pointer;
 }
 
-.edit-btn {
+.btn-edit {
     background-color: #ffc107;
 }
 
-.delete-btn {
+.btn-delete {
     background-color: #dc3545;
 }
