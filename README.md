@@ -1,6 +1,6 @@
 ## Crud com Angular
 
-#### Crud realizado com Angular no front-end e Node.jS/MySQL no back-end
+#### Crud realizado com Angular no front-end e Node.js/MySQL no back-end
 
-https://github.com/user-attachments/assets/26de9c54-ff64-4668-8aad-b339d798ecb0
+https://github.com/user-attachments/assets/747433b1-f0cb-4e1f-8048-2ce2d618461c
 
