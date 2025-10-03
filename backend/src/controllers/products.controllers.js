@@ -20,6 +20,7 @@ exports.add = async(req, res) => {
         return res.status(200).json({msg: 'Produto adicionado com sucesso'}); 
     }
     catch (error) {
+        console.error(error);
         return res.status(400).json({msg: 'Não foi possível adicionar o produto no banco de dados'});
     }
 }
@@ -51,25 +52,38 @@ exports.get = async(req, res) => {
         return res.status(200).json(result);
     }
     catch (error) {
+        console.error(error);
         return res.status(400).json({msg: 'Não foi possível obter os produtos do banco de dados'});
     }
 }
 
 exports.update = async(req, res) => {
-    const SQL = "UPDATE product SET name = ?, description = ?, quantity = ?, price = ? WHERE id = ?";
+    const SQL_UPDATE_PRODUCT = "UPDATE product SET name = ?, description = ?, quantity = ?, price = ? WHERE id = ?";
+    const SQL_DELETE_CATEGORIES = "DELETE FROM product_category WHERE product_id = ?";
+    const SQL_INSERT_CATEGORY = "INSERT INTO product_category (product_id, category_id) VALUES (?, ?)";
 
     const id = req.params.id;
-    const {name, description, quantity, price} = req.body;
+    const {name, description, quantity, price, categories} = req.body;
 
     try {
-        await db.query(SQL, [name, description, quantity, price, id]);
+        await db.query(SQL_UPDATE_PRODUCT, [name, description, quantity, price, id]);
+
+        await db.query(SQL_DELETE_CATEGORIES, [id]);
+
+        for(let i = 0; i < categories.length; i++) {
+            if(categories[i]) {
+                await db.query(SQL_INSERT_CATEGORY, [id, i + 1]);
+            }
+        }
 
         return res.status(200).json({msg: 'Produto editado com sucesso'}); 
     }
     catch (error) {
+        console.error(error);
         return res.status(400).json({msg: 'Não foi possível editar o produto no banco de dados'});
     }
 }
+
 
 exports.delete = async(req, res) => {
     const SQL = 'DELETE FROM product WHERE id = ?';
@@ -82,6 +96,7 @@ exports.delete = async(req, res) => {
         return res.status(200).json({msg: 'Produto deletado com sucesso'}); 
     }
     catch (error) {
+        console.error(error);
         return res.status(400).json({msg: 'Não foi possível deletar o produto do banco de dados'});
     }
 }
